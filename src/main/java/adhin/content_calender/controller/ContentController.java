@@ -2,6 +2,8 @@ package adhin.content_calender.controller;
 
 import adhin.content_calender.model.Content;
 import adhin.content_calender.repository.ContentCollectionRepository;
+import adhin.content_calender.repository.ContentJdbcTemplateRepository;
+import adhin.content_calender.repository.ContentRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,12 @@ import java.util.Optional;
 @RequestMapping("/api/content")
 @CrossOrigin
 public class ContentController {
-    private final ContentCollectionRepository repository;
+    private final ContentRepository repository;
+
+//    private final ContentJdbcTemplateRepository repository;
 
     // @Autowired is not required  is only one public class
-    public ContentController(ContentCollectionRepository repository) {
+    public ContentController(ContentRepository repository) {
         this.repository = repository;
     }// dependency injunction
     // make a request and final all the piece of the content in the system
@@ -58,7 +62,7 @@ public class ContentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id){
-        repository.delete(id);
+        repository.deleteById(id);
 
 
     }
