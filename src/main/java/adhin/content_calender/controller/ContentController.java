@@ -67,6 +67,13 @@ public class ContentController {
 
     }
 
+    @GetMapping("/filter/{keyword}")
+    public List<Content> findAllTitle(@PathVariable String keyword){
+        return repository.findAllByTitleContains(keyword);
+
+    }
+
+
 
 
 
